@@ -3,6 +3,7 @@ function ToDoList() {
     let section = document.createElement('section'),
         container = document.createElement('div'),
         title = document.createElement('p'),
+        div = document.createElement('div'),
         input = document.createElement('input'),
         ul = document.createElement('ul'),
         btn = document.createElement('div'),
@@ -14,10 +15,13 @@ function ToDoList() {
     section.appendChild(container);
     container.classList.add('container');
 
-    title.innerHTML = 'Список дел';
+    title.innerHTML = 'Список задач';
     container.appendChild(title);
+
+    container.appendChild(div);
+    div.classList.add('block');
     
-    container.appendChild(input);
+    div.appendChild(input);
     input.setAttribute('type', 'text');
     input.setAttribute('id', 'text');
     input.setAttribute('placeholder', 'Добавить в список');
