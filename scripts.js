@@ -1,4 +1,5 @@
 function ToDoList() {
+    let tasks = JSON.parse(localStorage.getItem('Tasks')) || [];
 
     let section = document.createElement('section'),
         container = document.createElement('div'),
@@ -40,6 +41,27 @@ function ToDoList() {
     btnReset.innerHTML = 'Reset';
     btnReset.classList.add('reset');
 
+    tasks.forEach(item => {
+        let li = document.createElement('li');
+        ul.appendChild(li);
+
+        let checkbox = document.createElement('input');
+        checkbox.classList.add('checkbox');
+        checkbox.setAttribute('type', 'checkbox');
+
+        let pencil = document.createElement('i');
+        pencil.classList.add('fa');
+        pencil.classList.add('fa-pencil');
+
+        let trash = document.createElement('i');
+        trash.classList.add('fa');
+        trash.classList.add('fa-trash-o');
+
+        p = document.createElement('p');
+        p.innerHTML = item; 
+
+        li.append(checkbox, p, pencil, trash);
+    });
 
     input.addEventListener('keyup', function(event) { 
         p = document.createElement('p');
@@ -47,7 +69,6 @@ function ToDoList() {
     });
 
     function addTask() {
-
         let li = document.createElement('li');
         ul.appendChild(li);
 
@@ -73,72 +94,25 @@ function ToDoList() {
         } else {
             if (document.querySelector('.error')) document.querySelector('.error').remove();
             li.append(checkbox, p, pencil, trash);
+            tasks.push(p.textContent);
+            localStorage.setItem('Tasks', JSON.stringify(tasks));
             input.value = '';
         }
 
-        
-        let arrCheckbox = document.querySelectorAll('.list input');
+        pencil.addEventListener('click', openModalWindow);
 
-        arrCheckbox.forEach(function(element) {
-            checkbox.onchange = function() {
-                if (element.checked) {
-                    li.classList.add('checked'); 
-                } else {
-                    li.classList.remove('checked'); 
-                }
-            };
-        });
-
-        btnReset.addEventListener('click', () => {
-            li.remove();
-        });
-
-        pencil.addEventListener('click', function() {
-            //edit = prompt('Редактировать список:');
-
-            let modalWindow = document.createElement('div'),
-                modalWindowInput = document.createElement('input'),
-                buttonClose = document.createElement('i'),
-                buttonSave = document.createElement('button');
-
-            section.appendChild(modalWindow);
-            modalWindow.classList.add('modalWindow');
-            
-            modalWindow.appendChild(modalWindowInput);
-            modalWindowInput.setAttribute('type', 'text');
-            modalWindowInput.setAttribute('id', 'textEdit');
-            modalWindowInput.value = pencil.parentElement.querySelector('p').textContent;
-
-            modalWindow.appendChild(buttonSave);
-            buttonSave.classList.add('save');
-            buttonSave.innerHTML = 'Save the changes';
-
-            buttonSave.addEventListener('click', function() {
-                pencil.parentElement.querySelector('p').innerHTML = modalWindowInput.value;
-                modalWindow.remove();
-            });
-
-            modalWindow.appendChild(buttonClose);
-            buttonClose.classList.add('fa');
-            buttonClose.classList.add('fa-times');
-        
-            buttonClose.addEventListener('click', function() {
-                modalWindow.remove();
-            });
-
-            /*
-            if (edit) {
-                li.innerHTML = '';
-                editP = document.createElement('p');
-                editP.append(edit);
-                li.append(checkbox, editP, pencil, trash);
-            } */
-        });
+        checkbox.onchange = function() {
+            if (checkbox.checked) checkbox.parentElement.classList.add('checked'); 
+            else checkbox.parentElement.classList.remove('checked'); 
+        };
 
         trash.addEventListener('click', function() {
             trash.parentElement.remove();
+            tasks.map((item, index, array) => {
+                if (trash.parentElement.querySelector('p').textContent === item) return array.splice(index, 1);
+            });
+            localStorage.setItem('Tasks', JSON.stringify(tasks));
         });
-        
     };
 
     input.addEventListener('keyup', (event) => {
@@ -147,6 +121,93 @@ function ToDoList() {
 
     btnAdd.addEventListener('click', addTask);
 
+    const arrLi = document.querySelectorAll('.list li');
+    btnReset.addEventListener('click', () => {
+        arrLi.forEach(item => item.remove());
+        localStorage.removeItem('Tasks');
+    });
+
+    const arrCheckbox = document.querySelectorAll('.list input');
+    arrCheckbox.forEach(item => {
+        item.onchange = function() {
+            if (item.checked) item.parentElement.classList.add('checked'); 
+            else item.parentElement.classList.remove('checked'); 
+        };
+    });
+
+    const arrPencil = document.querySelectorAll('.fa-pencil');
+    arrPencil.forEach(item => {
+        item.addEventListener('click', openModalWindow);
+    });
+
+    function openModalWindow(event) {
+        container.classList.remove('fadeIn');
+
+            let modalWindow = document.createElement('div'),
+                modalWindowWrapper = document.createElement('div'),
+                modalWindowInput = document.createElement('input'),
+                buttonClose = document.createElement('i'),
+                buttonSave = document.createElement('button'),
+                overlay = document.createElement('div');
+
+            document.body.appendChild(modalWindow);
+            modalWindow.classList.add('modalWindow');
+
+            document.body.appendChild(overlay);
+            overlay.classList.add('overlay');
+
+            modalWindow.appendChild(modalWindowWrapper);
+            modalWindowWrapper.classList.add('modalWindowWrapper');
+            
+            modalWindowWrapper.appendChild(modalWindowInput);
+            modalWindowInput.setAttribute('type', 'text');
+            modalWindowInput.setAttribute('id', 'textEdit');
+            modalWindowInput.value = event.target.parentElement.querySelector('p').textContent;
+
+            modalWindowWrapper.appendChild(buttonSave);
+            buttonSave.classList.add('save');
+            buttonSave.innerHTML = 'Save the changes';
+
+            function closeModalWindow() {
+                tasks.map((item, index, array) => {
+                    if (event.target.parentElement.querySelector('p').textContent === item) {
+                        return array.splice(index, 1, modalWindowInput.value);
+                    } 
+                });
+                localStorage.setItem('Tasks', JSON.stringify(tasks));
+                event.target.parentElement.querySelector('p').innerHTML = modalWindowInput.value;
+                overlay.remove();
+                modalWindow.remove();
+                container.classList.add('fadeIn');
+            }
+
+            buttonSave.addEventListener('click', closeModalWindow);
+
+            modalWindowInput.addEventListener('keyup', (event) => {
+                if (event.keyCode === 13) closeModalWindow();
+            });
+
+            modalWindowWrapper.appendChild(buttonClose);
+            buttonClose.classList.add('fa');
+            buttonClose.classList.add('fa-times');
+        
+            buttonClose.addEventListener('click', function() {
+                overlay.remove();
+                modalWindow.remove();
+                container.classList.add('fadeIn');
+            });
+    }
+
+    const arrTrash = document.querySelectorAll('.fa-trash-o');
+    arrTrash.forEach(item => {
+        item.addEventListener('click', function(event) {
+            event.target.parentElement.remove();
+            tasks.map((item, index, array) => {
+                if (event.target.parentElement.querySelector('p').textContent === item) return array.splice(index, 1);
+            });
+            localStorage.setItem('Tasks', JSON.stringify(tasks));
+        });
+    });
 };
 
 window.addEventListener('load', ToDoList);
