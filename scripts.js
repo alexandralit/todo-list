@@ -7,7 +7,7 @@ function ToDoList() {
         input = document.createElement('input'),
         ul = document.createElement('ul'),
         btn = document.createElement('div'),
-        btnSave = document.createElement('button'),
+        btnAdd = document.createElement('button'),
         btnReset = document.createElement('button');
 
     document.body.appendChild(section);
@@ -15,7 +15,7 @@ function ToDoList() {
     section.appendChild(container);
     container.classList.add('container');
 
-    title.innerHTML = 'Список задач';
+    title.innerHTML = 'ToDo List';
     container.appendChild(title);
 
     container.appendChild(div);
@@ -24,7 +24,7 @@ function ToDoList() {
     div.appendChild(input);
     input.setAttribute('type', 'text');
     input.setAttribute('id', 'text');
-    input.setAttribute('placeholder', 'Добавить в список');
+    input.setAttribute('placeholder', 'Type your task');
 
     container.appendChild(ul);
     ul.classList.add('list');
@@ -32,12 +32,12 @@ function ToDoList() {
     container.appendChild(btn);
     btn.classList.add('button');
 
-    btn.appendChild(btnSave);
-    btnSave.innerHTML = 'Добавить';
-    btnSave.classList.add('save');
+    btn.appendChild(btnAdd);
+    btnAdd.innerHTML = 'Add';
+    btnAdd.classList.add('add');
 
     btn.appendChild(btnReset);
-    btnReset.innerHTML = 'Очистить';
+    btnReset.innerHTML = 'Reset';
     btnReset.classList.add('reset');
 
 
@@ -45,9 +45,8 @@ function ToDoList() {
         p = document.createElement('p');
         p.append(event.target.value); 
     });
-    
 
-    function Save() {
+    function addTask() {
 
         let li = document.createElement('li');
         ul.appendChild(li);
@@ -64,10 +63,15 @@ function ToDoList() {
         trash.classList.add('fa');
         trash.classList.add('fa-trash-o');
 
+        let error = document.createElement('p');
+        error.classList.add('error');
+
         if (input.value === '') {
-            alert('Введите задачу.');
+            error.innerHTML = 'Task not added.';
+            if (document.getElementsByClassName('error').length === 0) container.insertBefore(error, btn);
             li.remove();
         } else {
+            if (document.querySelector('.error')) document.querySelector('.error').remove();
             li.append(checkbox, p, pencil, trash);
             input.value = '';
         }
@@ -78,9 +82,9 @@ function ToDoList() {
         arrCheckbox.forEach(function(element) {
             checkbox.onchange = function() {
                 if (element.checked) {
-                    li.classList.toggle('checked'); 
+                    li.classList.add('checked'); 
                 } else {
-                    li.classList.toggle('checked'); 
+                    li.classList.remove('checked'); 
                 }
             };
         });
@@ -90,14 +94,31 @@ function ToDoList() {
         });
 
         pencil.addEventListener('click', function() {
-            edit = prompt('Редактировать список:');
+            //edit = prompt('Редактировать список:');
 
+            let modalWindow = document.createElement('div'),
+                modalWindowInput = document.createElement('input'),
+                close = document.createElement('i'),
+                modalWindowButtonSave = document.createElement('button');
+            
+            modalWindow.classList.add('modalWindow');
+            section.appendChild(modalWindow);
+
+            close.classList.add('fa');
+            close.classList.add('fa-times');
+            modalWindow.appendChild(close);
+
+            close.addEventListener('click', function() {
+                modalWindow.remove();
+            });
+
+            /*
             if (edit) {
                 li.innerHTML = '';
                 editP = document.createElement('p');
                 editP.append(edit);
                 li.append(checkbox, editP, pencil, trash);
-            } 
+            } */
         });
 
         trash.addEventListener('click', function() {
@@ -107,12 +128,10 @@ function ToDoList() {
     };
 
     input.addEventListener('keyup', (event) => {
-        if (event.keyCode == 13) {
-            Save();
-        }
+        if (event.keyCode === 13) addTask();
     });
 
-    btnSave.addEventListener('click', Save);
+    btnAdd.addEventListener('click', addTask);
 
 };
 
