@@ -98,17 +98,31 @@ function ToDoList() {
 
             let modalWindow = document.createElement('div'),
                 modalWindowInput = document.createElement('input'),
-                close = document.createElement('i'),
-                modalWindowButtonSave = document.createElement('button');
-            
-            modalWindow.classList.add('modalWindow');
+                buttonClose = document.createElement('i'),
+                buttonSave = document.createElement('button');
+
             section.appendChild(modalWindow);
+            modalWindow.classList.add('modalWindow');
+            
+            modalWindow.appendChild(modalWindowInput);
+            modalWindowInput.setAttribute('type', 'text');
+            modalWindowInput.setAttribute('id', 'textEdit');
+            modalWindowInput.value = pencil.parentElement.querySelector('p').textContent;
 
-            close.classList.add('fa');
-            close.classList.add('fa-times');
-            modalWindow.appendChild(close);
+            modalWindow.appendChild(buttonSave);
+            buttonSave.classList.add('save');
+            buttonSave.innerHTML = 'Save the changes';
 
-            close.addEventListener('click', function() {
+            buttonSave.addEventListener('click', function() {
+                pencil.parentElement.querySelector('p').innerHTML = modalWindowInput.value;
+                modalWindow.remove();
+            });
+
+            modalWindow.appendChild(buttonClose);
+            buttonClose.classList.add('fa');
+            buttonClose.classList.add('fa-times');
+        
+            buttonClose.addEventListener('click', function() {
                 modalWindow.remove();
             });
 
