@@ -2,10 +2,12 @@
     margin: 0;
     padding: 0;
 }
+
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #E4F0FA;
 }
+
 section {
     height: 100vh;
     display: flex;
@@ -14,12 +16,14 @@ section {
     flex-direction: column;
     position: relative;
 }
+
 .container {
     width: 700px;
     background-color: #E4F0FA;
     border-radius: 20px;
     box-shadow: -11px -11px 20px rgba(255, 255, 255, 0.272044), -8px -40px 22px rgba(246, 251, 255, 0.384288), -8px 0px 8px rgba(244, 248, 251, 0.50254), 19px 21px 50px rgba(176, 195, 210, 0.727846);
 }
+
 .container p:first-child {
     text-align: center;
     font-size: 22px;
@@ -28,10 +32,12 @@ section {
     background-color: #E4F0FA;
     color: #334669;
 }
+
 .container .block {
     display: flex;
     justify-content: center;
 }
+
 #text,
 #textEdit {
     font-family: 'Montserrat', sans-serif;
@@ -47,16 +53,19 @@ section {
     color: #334669;
     box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
 }
+
 .container input::placeholder {
     color: #334669cc;
     font-family: 'Montserrat', sans-serif;
 }
+
 ul {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 .list li {
     font-size: 20px;
     list-style: none;
@@ -69,9 +78,11 @@ ul {
     align-items: center;
     justify-content: space-between;
 }
+
 .list li p {
     width: 400px;
 }
+
 input[type=checkbox] {
     width: 20px;
     height: 20px;
@@ -79,30 +90,36 @@ input[type=checkbox] {
     border: none;
     outline: none;
 }
+
 .checked p {
     transition: all 0.7s ease;
     text-decoration: line-through;
     color: #33466994;
 }
+
 .fa-pencil {
     font-size: 20px;
 }
+
 .fa-trash-o {
     font-size: 20px;
     padding-left: 5px;
 }
+
 .fa-trash-o:hover,
 .fa-pencil:hover,
 .fa-times:hover {
     transition: color 0.2s linear;
     color: #33466994;
 }
-.button {
+
+.container-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px 0;
 }
+
 .add,
 .reset {
     border: none;
@@ -116,23 +133,21 @@ input[type=checkbox] {
     margin: 15px;
     box-shadow: -11px -11px 20px rgba(255, 255, 255, 0.272044), -8px -40px 22px rgba(246, 251, 255, 0.384288), -8px 0px 8px rgba(244, 248, 251, 0.50254), 19px 21px 50px rgba(176, 195, 210, 0.727846);
 }
+
 .add:hover,
 .reset:hover,
 .save:hover {
     transition: box-shadow 0.7s ease;
     box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
 }
-.fadeIn {
-    animation-name: fadeIn;
-    animation-duration: .5s;
-    animation-fill-mode: both;
-}
+
 .error {
     transition: all 0.7s ease;
     font-size: 18px;
     text-align: center;
     color: #334669;
 }
+
 .overlay {
     position: fixed;
     top: 0;
@@ -144,6 +159,7 @@ input[type=checkbox] {
     animation-duration: .3s;
     animation-fill-mode: both;
 }
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -152,6 +168,7 @@ input[type=checkbox] {
         opacity: 1;
     }
 } 
+
 .modalWindow {
     animation-name: bounceInLeft;
     animation-duration: 1s;
@@ -166,6 +183,7 @@ input[type=checkbox] {
     box-shadow: -11px -11px 20px rgba(255, 255, 255, 0.272044), -8px -40px 22px rgba(246, 251, 255, 0.384288), -8px 0px 8px rgba(244, 248, 251, 0.50254), 19px 21px 50px rgba(176, 195, 210, 0.727846);
     z-index: 2;
 }
+
 @keyframes bounceInLeft {
     0%, 60%, 75%, 90%, 100% {
         transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -188,6 +206,7 @@ input[type=checkbox] {
         transform: none;
     }
 } 
+
 .modalWindowWrapper {
     display: flex;
     align-items: center;
@@ -196,6 +215,7 @@ input[type=checkbox] {
     position: relative;
     height: inherit;
 }
+
 .fa-times {
     font-size: 30px;
     color: #334669;
@@ -203,6 +223,7 @@ input[type=checkbox] {
     top: 30px;
     right: 30px;
 }
+
 .save {
     border: none;
     outline: none;
@@ -215,6 +236,7 @@ input[type=checkbox] {
     margin-top: 30px;
     box-shadow: -11px -11px 20px rgba(255, 255, 255, 0.272044), -8px -40px 22px rgba(246, 251, 255, 0.384288), -8px 0px 8px rgba(244, 248, 251, 0.50254), 19px 21px 50px rgba(176, 195, 210, 0.727846);
 }
+
 .switch-btn {
     display: inline-block;
     width: 72px; 
@@ -231,6 +253,7 @@ input[type=checkbox] {
     transition-duration: 300ms; 
     margin-bottom: 40px;
 }
+
 .switch-btn::after {
     content: "";
     height: 32px; 
@@ -243,62 +266,76 @@ input[type=checkbox] {
     position: absolute;
     z-index: 1;
 }
+
 .switch-on {
     background-position-x: -100px;
 }
+
 .switch-on::after {
     left: 37px;
 }
+
 .dark-theme {
     background-color: #2C2F33;
 }
+
 .dark-theme .container {
     background-color: #2C2F33;
     box-shadow: -6.22302px -6.22302px 18.6691px #3B4451, 6.22302px 6.22302px 18.6691px #000000;
 }
+
 .dark-theme .container p:first-child {
     background-color: #2C2F33;
     color: #EEEEEE;
 }
+
 .dark-theme #text,
 .dark-theme #textEdit {
     background-color: #2C2F33;
     color: #EEEEEE;
     box-shadow: inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;
 }
+
 .dark-theme .container input::placeholder {
     color: #eeeeeed7;
 }
+
 .dark-theme .list li {
     color: #EEEEEE;
     border-bottom: 1px solid #eeeeeed7;
 }
+
 .dark-theme .checked p {
     transition: all 0.7s ease;
     text-decoration: line-through;
     color: #eeeeeebe;
 }
+
 .dark-theme .fa-trash-o:hover,
 .dark-theme .fa-pencil:hover,
 .dark-theme .fa-times:hover {
     transition: color 0.2s linear;
     color: #eeeeee9f;
 }
+
 .dark-theme .add,
 .dark-theme .reset {
     background-color: #2C2F33;
     color: #EEEEEE;
     box-shadow: -6.22302px -6.22302px 18.6691px #3B4451, 6.22302px 6.22302px 18.6691px #000000;
 }
+
 .dark-theme .add:hover,
 .dark-theme .reset:hover,
 .dark-theme .save:hover {
     transition: box-shadow 0.7s ease;
     box-shadow: inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;
 }
+
 .dark-theme .error {
     color: #EEEEEE;
 }
+
 .dark-theme .overlay {
     background-color: #2C2F33;
 }
@@ -307,9 +344,11 @@ input[type=checkbox] {
     background-color: #2C2F33;
     box-shadow: -6.22302px -6.22302px 18.6691px #3B4451, 6.22302px 6.22302px 18.6691px #000000;
 }
+
 .dark-theme .fa-times {
     color: #EEEEEE;
 }
+
 .dark-theme .save {
     background-color: #2C2F33;
     color: #EEEEEE;

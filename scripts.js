@@ -6,7 +6,7 @@ const section = document.createElement('section'),
     div = document.createElement('div'),
     input = document.createElement('input'),
     ul = document.createElement('ul'),
-    btn = document.createElement('div'),
+    containerBtn = document.createElement('div'),
     btnAdd = document.createElement('button'),
     btnReset = document.createElement('button');
 
@@ -29,14 +29,14 @@ input.setAttribute('placeholder', 'Type your task');
 container.appendChild(ul);
 ul.classList.add('list');
 
-container.appendChild(btn);
-btn.classList.add('button');
+container.appendChild(containerBtn);
+containerBtn.classList.add('container-btn');
 
-btn.appendChild(btnAdd);
+containerBtn.appendChild(btnAdd);
 btnAdd.innerHTML = 'Add';
 btnAdd.classList.add('add');
 
-btn.appendChild(btnReset);
+containerBtn.appendChild(btnReset);
 btnReset.innerHTML = 'Reset';
 btnReset.classList.add('reset');
 
@@ -68,7 +68,7 @@ function createTask(item) {
 
     if (task === '' && typeof item !== 'string') {
         error.innerHTML = 'Task not added.';
-        if (document.getElementsByClassName('error').length === 0) container.insertBefore(error, btn);
+        if (document.getElementsByClassName('error').length === 0) container.insertBefore(error, containerBtn);
         li.remove();
     } else if (typeof item === 'string') {
         if (document.querySelector('.error')) document.querySelector('.error').remove();
@@ -108,10 +108,6 @@ function checkedTask(element) {
     };
 }
 
-function editTask(element) {
-    element.addEventListener('click', openModalWindow);
-}
-
 input.addEventListener('keyup', (event) => {
     if (event.keyCode === 13) createTask();
 });
@@ -122,6 +118,10 @@ btnReset.addEventListener('click', () => {
     ul.innerHTML = '';
     localStorage.removeItem('Tasks');
 });
+
+function editTask(element) {
+    element.addEventListener('click', openModalWindow);
+}
 
 function openModalWindow(event) {
     container.classList.remove('fadeIn');
@@ -151,17 +151,27 @@ function openModalWindow(event) {
     buttonSave.classList.add('save');
     buttonSave.innerHTML = 'Save the changes';
 
+    const error = document.createElement('p');
+    error.classList.add('error');
+
     function closeModalWindow() {
-        tasks.map((item, index, array) => {
-            if (event.target.parentElement.querySelector('p').textContent === item) {
-                return array.splice(index, 1, modalWindowInput.value);
-            } 
-        });
-        localStorage.setItem('Tasks', JSON.stringify(tasks));
-        event.target.parentElement.querySelector('p').innerHTML = modalWindowInput.value;
-        overlay.remove();
-        modalWindow.remove();
-        container.classList.add('fadeIn');
+        let task = modalWindowInput.value.trim();
+        if (task.length > 0) {
+            if (document.querySelector('.error')) document.querySelector('.error').remove();
+            tasks.map((item, index, array) => {
+                if (event.target.parentElement.querySelector('p').textContent === item) {
+                    return array.splice(index, 1, modalWindowInput.value);
+                } 
+            });
+            localStorage.setItem('Tasks', JSON.stringify(tasks));
+            event.target.parentElement.querySelector('p').innerHTML = modalWindowInput.value;
+            overlay.remove();
+            modalWindow.remove();
+            container.classList.add('fadeIn');
+        } else {
+            error.innerHTML = 'Task not changed.';
+            if (document.getElementsByClassName('error').length === 0) modalWindowWrapper.insertBefore(error, buttonSave);
+        }
     }
 
     buttonSave.addEventListener('click', closeModalWindow);
@@ -182,7 +192,6 @@ function openModalWindow(event) {
 }
 
 const switchButton = document.createElement('div');
-
 switchButton.classList.add('switch-btn');
 
 switchButton.addEventListener('click', () => {
