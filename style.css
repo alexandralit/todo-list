@@ -9,12 +9,12 @@ body {
 }
 
 section {
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     position: relative;
+    padding: 100px 0 50px 0;
 }
 
 .container {
@@ -175,11 +175,11 @@ input[type=checkbox] {
     animation-fill-mode: both;
     width: 700px;
     height: 30vh;
-    position: absolute;
     top: calc(50% - 15vh);
     left: calc(50% - 350px);
     background-color: #E4F0FA;
     border-radius: 20px;
+    position: fixed;
     box-shadow: -11px -11px 20px rgba(255, 255, 255, 0.272044), -8px -40px 22px rgba(246, 251, 255, 0.384288), -8px 0px 8px rgba(244, 248, 251, 0.50254), 19px 21px 50px rgba(176, 195, 210, 0.727846);
     z-index: 2;
 }
@@ -249,7 +249,9 @@ input[type=checkbox] {
     padding: 0;
     border: none;
     cursor: pointer;
-    position: relative;
+    position: absolute;
+    top: 25px;
+    left: 25px;
     transition-duration: 300ms; 
     margin-bottom: 40px;
 }

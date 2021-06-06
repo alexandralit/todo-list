@@ -1,0 +1,84 @@
+@media (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+    .container {
+        width: 80%;
+    }
+    #text, 
+    #textEdit {
+        width: 65%;
+    }
+    .list li {
+        width: 70%;
+    }
+    .list li p {
+        width: 85%;
+    }
+    .modalWindow {
+        height: 40vh;
+        top: calc(50% - 20vh);
+        width: 80%;
+        left: 10%;
+    }
+}
+@media (max-width: 500px) {
+    .container {
+        width: 90%;
+    }
+    .container p:first-child {
+        font-size: 18px;
+    }
+    #text, 
+    #textEdit {
+        width: 85%;
+        font-size: 16px;
+    }
+    .list li {
+        width: 85%;
+        font-size: 16px;
+    }
+    .list li p {
+        width: 85%;
+        font-size: 16px;
+    }
+    .fa-pencil {
+        font-size: 16px;
+    }
+    
+    .fa-trash-o {
+        font-size: 16px;
+    }
+    .add, .reset {
+        width: 40%;
+        font-size: 14px;
+    }
+    .save {
+        width: 60%;
+        font-size: 14px;
+    }
+    .fa-times {
+        font-size: 25px;
+        top: 15px;
+        right: 15px;
+    }
+    .error {
+        font-size: 14px;
+    }
+    .modalWindow {
+        width: 90%;
+        left: 5%;
+    }
+}
+@media (max-width: 425px) {
+    .add, .reset {
+        width: 40%;
+        margin: 15px 10px;
+    }
+    .save {
+        width: 70%;
+    }
+    .fa-times {
+        font-size: 20px;
+    }
+}
