@@ -175,7 +175,7 @@ input[type=checkbox] {
     animation-duration: 1s;
     animation-fill-mode: both;
     width: 700px;
-    height: 30vh;
+    height: 35vh;
     top: calc(50% - 15vh);
     left: calc(50% - 350px);
     background-color: #E4F0FA;
