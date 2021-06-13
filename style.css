@@ -52,7 +52,7 @@ section {
     text-align: center;
     color: #334669;
     box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
-    -webkit-box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
+    -webkit-appearance: none;
 }
 
 .container input::placeholder {
