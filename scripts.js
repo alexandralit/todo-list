@@ -194,9 +194,21 @@ function openModalWindow(event) {
 const switchButton = document.createElement('div');
 switchButton.classList.add('switch-btn');
 
+if (localStorage.getItem('Theme')) {
+    switchButton.classList.add('switch-on');
+    document.body.classList.add('dark-theme');
+}
+
 switchButton.addEventListener('click', () => {
-    switchButton.classList.toggle('switch-on');
-    document.body.classList.toggle('dark-theme');
+    if (!document.body.classList.contains('dark-theme')) {
+        localStorage.setItem('Theme', 'on');
+        switchButton.classList.add('switch-on');
+        document.body.classList.add('dark-theme');
+    } else {
+        localStorage.removeItem('Theme', 'on');
+        switchButton.classList.remove('switch-on');
+        document.body.classList.remove('dark-theme');
+    }
 });
 
 section.insertBefore(switchButton, container);
