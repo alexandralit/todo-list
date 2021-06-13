@@ -53,7 +53,6 @@ section {
     color: #334669;
     box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
     -webkit-box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
-    -moz-box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
 }
 
 .container input::placeholder {
@@ -141,8 +140,6 @@ input[type=checkbox] {
 .save:hover {
     transition: box-shadow 0.7s ease;
     box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
-    -webkit-box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
-    -moz-box-shadow: inset -6px -3px 5px rgba(255, 255, 255, 0.750601), inset 3px 6px 6px #C3D7E7, inset 4px 2px 6px #B1C5D5, inset 0px 2px 4px #C8D4E2;
 }
 
 .error {
@@ -300,8 +297,6 @@ input[type=checkbox] {
     background-color: #2C2F33;
     color: #EEEEEE;
     box-shadow: inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;
-    -webkit-box-shadow: inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;
-    -moz-box-shadow: inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;
 }
 
 .dark-theme .container input::placeholder {
@@ -338,8 +333,6 @@ input[type=checkbox] {
 .dark-theme .save:hover {
     transition: box-shadow 0.7s ease;
     box-shadow: inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;
-    -webkit-box-shadow: inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;
-    -moz-box-shadow: inset -6.22302px -6.22302px 18.6691px #3B4451, inset 6.22302px 6.22302px 18.6691px #000000;
 }
 
 .dark-theme .error {
